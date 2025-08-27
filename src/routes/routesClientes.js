@@ -1,22 +1,26 @@
 const express = require('express')
 const router = express.Router()
-const whatsControllers = require('../controllers/whatsControllers')
+const controllersClientes = require('../controllers/controllersClientes')
 
-router.get(
-    '/data/user/unalterable/', 
-    whatsControllers.getListAllUserPersonalData
+router.post(
+    '/', 
+    controllersClientes.postClientes
+)
+router.put(
+    '/:id', 
+    controllersClientes.putClientes
+)
+router.delete(
+    '/:id', 
+    controllersClientes.deleteClientes
 )
 router.get(
-    '/data/user/editable/', 
-    whatsControllers.getListUserProfileAccountData
+    '/', 
+    controllersClientes.getSearchAllClientes
 )
 router.get(
-    '/data/contact/user/', 
-    whatsControllers.getListContactDetailsForEachUser
-)
-router.get(
-    '/filter/', 
-    whatsControllers.getFilterAll
+    '/:id', 
+    controllersClientes.getSearchClientes
 )
 
 module.exports = router

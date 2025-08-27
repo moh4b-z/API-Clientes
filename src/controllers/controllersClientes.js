@@ -1,52 +1,52 @@
-const servicesSexo = require("../../services/usuario/servicesSexo")
+const servicesClientes = require("../../services/servicesClientes")
 
-async function postCliente (request, response) {
+async function postClientes (request, response) {
     let contentType = request.headers['content-type']
     
     let dadosBody = request.body
 
-    let resultSexo = await servicesSexo.inserirSexo(dadosBody, contentType)
+    let resultClientes = await servicesClientes.inserirClientes(dadosBody, contentType)
 
-    response.status(resultSexo.status_code)
-    response.json(resultSexo)
+    response.status(resultClientes.status_code)
+    response.json(resultClientes)
 }
-async function getSearchAllCliente(request, response) {
-    let resultSexo = await servicesSexo.listarTodosSexo()
+async function getSearchAllClientes(request, response) {
+    let resultClientes = await servicesClientes.listarTodosClientes()
 
-    response.status(resultSexo.status_code)
-    response.json(resultSexo)
-}
-
-async function getSearchCliente(request, response) {
-    let idSexo = request.params.idSexo
-    let resultSexo = await servicesSexo.buscarSexo(idSexo)
-
-    response.status(resultSexo.status_code)
-    response.json(resultSexo)
+    response.status(resultClientes.status_code)
+    response.json(resultClientes)
 }
 
-async function deleteCliente(request, response) {
-    let idSexo = request.params.idSexo
-    let resultSexo = await servicesSexo.excluirSexo(idSexo)
+async function getSearchClientes(request, response) {
+    let idClientes = request.params.id
+    let resultClientes = await servicesClientes.buscarClientes(idClientes)
 
-    response.status(resultSexo.status_code)
-    response.json(resultSexo)
+    response.status(resultClientes.status_code)
+    response.json(resultClientes)
 }
-async function putCliente(request, response) {
-    let idSexo = request.params.idSexo
+
+async function deleteClientes(request, response) {
+    let idClientes = request.params.id
+    let resultClientes = await servicesClientes.excluirClientes(idClientes)
+
+    response.status(resultClientes.status_code)
+    response.json(resultClientes)
+}
+async function putClientes(request, response) {
+    let idClientes = request.params.id
     let contentType = request.headers['content-type']
     let dadosBody = request.body
-    let resultSexo = await servicesSexo.atualizarSexo(dadosBody, idSexo, contentType)
+    let resultClientes = await servicesClientes.atualizarClientes(dadosBody, idClientes, contentType)
 
-    response.status(resultSexo.status_code)
-    response.json(resultSexo)
+    response.status(resultClientes.status_code)
+    response.json(resultClientes)
 }
 
 
 module.exports = {
-    postSexo,
-    putSexo,
-    deleteSexo,
-    getSearchAllSexo,
-    getSearchSexo
+    postClientes,
+    putClientes,
+    deleteClientes,
+    getSearchAllClientes,
+    getSearchClientes
 }
