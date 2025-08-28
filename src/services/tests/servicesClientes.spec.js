@@ -1,9 +1,28 @@
-// DESCRIBE -> bloco de testes - test swites: vai declara um conjunto de testes, por exemplo ser der certo e errado uma função
-// IT or TEST -> declara um teste unitario - test cases
-// EXPECT -> faz a asserções acerca do resultado do teste, ajudar a validar resultados
+// mock do ClientesDAO
+jest.mock('../../model/DAO/clientes', () => ({
+  insertClientes: jest.fn(),
+  updateClientes: jest.fn(),
+  deleteClientes: jest.fn(),
+  selectAllClientes: jest.fn(),
+  selectByIdClientes: jest.fn()
+}))
+const ClientesDAO = require("../../model/DAO/clientes")
+const servicesClientes = require("../servicesClientes")
+const MENSAGE = require("../../modulo/config")
 
-describe("Teste", () => {
-    it("", () => {
 
+describe("Table ClientesDAO testes", () => {
+    beforeEach(() => {
+        jest.clearAllMocks()
+    })
+    test("inserirClientes teste", async () => {
+        const cliente = {nome: "Mohammad", idade: 18}
+        const contentType = "application/json"
+
+        const result = await servicesClientes.inserirClientes(cliente, contentType)
+
+        expect(ClientesDAO.insertClientes).toHaveBeenCalledTimes(1)
+        expect(ClientesDAO.insertClientes).toHaveBeenCalledWith(cliente)
+        expect(result).toBe(MENSAGE.SUCCESS_CEATED_ITEM)
     })
 })

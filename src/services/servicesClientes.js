@@ -1,18 +1,18 @@
-const MENSAGE = require("../../modulo/config")
-const CORRECTION = require("../../utils/inputCheck")
-const TableCORRECTION = require("../../utils/tablesCheck")
+const MENSAGE = require("../modulo/config")
+const CORRECTION = require("../utils/inputCheck")
+const TableCORRECTION = require("../utils/tablesCheck")
 
-const ClientesDAO = require("../../model/DAO/Clientes")
+const ClientesDAO = require("../model/DAO/clientes")
 // const { log } = require("console")
 
 async function inserirClientes(Clientes, contentType) {
     try {
         if(contentType == "application/json"){
             // console.log(Clientes);
-            // console.log(TableCORRECTION.CHECK_tbl_Clientes(Clientes));
+            // console.log(TableCORRECTION.CHECK_tbl_clientes(Clientes));
             
             
-            if(TableCORRECTION.CHECK_tbl_Clientes(Clientes)){
+            if(TableCORRECTION.CHECK_tbl_clientes(Clientes)){
                 let resultClientes = await ClientesDAO.insertClientes(Clientes)
                 if (resultClientes){
                     return MENSAGE.SUCCESS_CEATED_ITEM
@@ -43,7 +43,7 @@ async function atualizarClientes(Clientes, idClientes, contentType) {
             // console.log((idClientes));
             
             
-            if(TableCORRECTION.CHECK_tbl_Clientes(Clientes) && CORRECTION.CHECK_ID(idClientes)){
+            if(TableCORRECTION.CHECK_tbl_clientes(Clientes) && CORRECTION.CHECK_ID(idClientes)){
 
                 let resultClientes = await buscarClientes(parseInt(idClientes))
                 

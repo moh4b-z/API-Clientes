@@ -8,10 +8,10 @@ async function insertClientes(Clientes){
         
         let sql = `insert into tbl_clientes (
                                             nome,
-                                            sigla                              
+                                            idade                              
                                         ) values (
                                             '${Clientes.nome}',
-                                            '${Clientes.sigla}'
+                                            '${Clientes.idade}'
                                         )`
 
         //executar script no BD        
@@ -28,10 +28,10 @@ async function insertClientes(Clientes){
 async function updateClientes(Clientes){
     try {
         let sql = `update tbl_clientes set  nome = '${Clientes.nome}',
-                                        sigla = '${Clientes.sigla}'                      
+                                        idade = '${Clientes.idade}'                      
                                         
                                 where id = ${Clientes.id}`
-        console.log(sql);
+        // console.log(sql);
         let result = await prisma.$executeRawUnsafe(sql)
 
         return result ? true : false

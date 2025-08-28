@@ -14,13 +14,12 @@ function CHECK_idade(idade){
     }
 }
 
-
 function CHECK_VARCHAR_NOT_NULL(text, letters){
     // console.log(text + " - " + letters)
-    if(!(CHECK_NOT_NULL(text)) || !(CHECK_VARCHAR(text, letters))){
-        return false
-    }else{
+    if(CHECK_NOT_NULL(text) && CHECK_VARCHAR(text, letters)){
         return true
+    }else{
+        return false
     }
 }
 
@@ -44,5 +43,6 @@ module.exports = {
     CHECK_ID,
     CHECK_VARCHAR_NOT_NULL,
     CHECK_VARCHAR,
+    CHECK_NOT_NULL,
     CHECK_idade
 }
