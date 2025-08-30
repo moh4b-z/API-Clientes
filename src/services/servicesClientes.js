@@ -122,7 +122,7 @@ async function listarTodosClientes() {
                     "status": true,
                     "status_code": 201,
                     "items": resultClientes.length,
-                    "sexes": resultClientes
+                    "result": resultClientes
                 }
                 return dadosClientess
             }else{
@@ -149,7 +149,7 @@ async function buscarClientes(idClientes) {
                     let dadosClientess = {
                         "status": true,
                         "status_code": 201,
-                        "sex": resultClientes
+                        "result": resultClientes
                     }
                     return dadosClientess
                 }else{
